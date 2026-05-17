@@ -92,6 +92,7 @@ reg   [1:0] wd_size_code;
 wire  [7:0] buff_dout;
 reg   [1:0] sd_block = 0;
 reg         format;
+reg buff_wr;
 generate
 	if(RWMODE) begin
 		wd1793_dpram sbuf
@@ -108,7 +109,7 @@ generate
 			.wren_b(wre & buff_wr & (addr == A_DATA) & ~scan_active),
 			.q_b(buff_dout)
 		);
-		reg buff_wr;
+//		reg buff_wr;
 	end else begin
 		assign buff_dout   = 0;
 		assign sd_buff_din = 0;
@@ -768,13 +769,14 @@ wire[10:0] edsk_next = ((edsk_addr + 1'd1) >= edsk_size) ? 11'd0 : edsk_addr + 1
 
 reg  [7:0] spt_size = 0;
 
+reg  [7:0] spt_addr;
 generate
 	if(EDSK) begin
 		wire [7:0] scan_data = RWMODE ? buff_dout : input_data;
 		reg [53:0] edsk[1992];
 		reg  [7:0] spt[166];
 
-		reg  [7:0] spt_addr;
+//		reg  [7:0] spt_addr;
 		always @(posedge clk_sys) begin
 			{edsk_track,edsk_side,edsk_trackf,edsk_sidef,edsk_sector,edsk_sizecode,edsk_offset} <= edsk[edsk_addr];
 			edsk_spt <= spt[spt_addr];
