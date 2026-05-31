@@ -113,7 +113,7 @@ wd1793 #(.RWMODE(1), .EDSK(0)) fdc
 
 wire [7:0] d_from_rom;
 
-spram #(.addr_width(14), .mem_init_file("rtl/rom/vy0010.mif"), .mem_name("VY0010ROM")) vy0010_rom
+spram #(.addr_width(14), .mem_init_file("rtl/rom/vy0010.mif"), .mem_preload(1), .mem_name("VY0010ROM")) vy0010_rom
 (
    .clock(clk),
    .address(addr[13:0]),
