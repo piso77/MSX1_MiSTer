@@ -5,7 +5,10 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 
-ENTITY spram IS
+LIBRARY altera_mf;
+USE altera_mf.altera_mf_components.all;
+
+ENTITY spram_altera IS
 	generic (
 		addr_width    : integer := 8;
 		data_width    : integer := 8;
@@ -25,26 +28,36 @@ ENTITY spram IS
 	);
 END;
 
-ARCHITECTURE mega65 OF spram IS
+ARCHITECTURE SYN OF spram_altera IS
 	signal q0 : std_logic_vector((data_width - 1) downto 0);
 
 BEGIN
 	q<= q0 when cs = '1' else (others => '1');
 
-	raminit_component : entity work.ram_init
+	altsyncram_component : altsyncram
 	GENERIC MAP (
-		G_ROM_FILE => mem_init_file,
-		G_ROM_PRELOAD => mem_preload,
-		G_ROM_FILE_HEX => false,
-		G_ADDR_WIDTH => addr_width,
-		G_DATA_WIDTH => data_width
+		clock_enable_input_a => "BYPASS",
+		clock_enable_output_a => "BYPASS",
+		intended_device_family => "Cyclone V",
+		lpm_hint => "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME="&mem_name,
+		lpm_type => "altsyncram",
+		numwords_a => 2**addr_width,
+		operation_mode => "SINGLE_PORT",
+		outdata_aclr_a => "NONE",
+		outdata_reg_a => "UNREGISTERED",
+		power_up_uninitialized => "FALSE",
+		read_during_write_mode_port_a => "NEW_DATA_NO_NBE_READ",
+		init_file => mem_init_file, 
+		widthad_a => addr_width,
+		width_a => data_width,
+		width_byteena_a => 1
 	)
 	PORT MAP (
-		address_i => address,
-		clock_i => clock,
-		data_i => data,
-		wren_i => wren and cs,
-		q_o => q0
+		address_a => address,
+		clock0 => clock,
+		data_a => data,
+		wren_a => wren and cs,
+		q_a => q0
 	);
 
-END;
+END SYN;
