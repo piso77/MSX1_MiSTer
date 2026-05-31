@@ -10,7 +10,7 @@ entity ram_init is
    generic (
       G_ADDR_WIDTH   : positive;
       G_DATA_WIDTH   : positive := 8;
-      G_ROM_PRELOAD  : boolean := false;
+      G_ROM_PRELOAD  : integer := 0;
       G_ROM_FILE     : string  := "";
       G_ROM_FILE_HEX : boolean := false
    );
@@ -37,7 +37,7 @@ architecture synthesis of ram_init is
 		variable bitvec_slv : std_logic_vector(G_DATA_WIDTH - 1 downto 0);
       variable i           : natural := 0;
    begin
-      if G_ROM_PRELOAD then
+      if G_ROM_PRELOAD = 1 then
          file_open(ramfile, ramfilename);
          while not endfile(ramfile) loop
             readline(ramfile, ramfileline);
