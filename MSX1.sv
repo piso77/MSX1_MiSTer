@@ -378,7 +378,7 @@ msx1 MSX1
 	.vblank(vblank),
 	.vdp_pal('1),
 	.audio(audio),
-	.ps2_key('0),
+	.ps2_key(ps2_key),
 	.joy0(joy0),
 	.joy1(joy1),
 	.ioctl_download('0),
