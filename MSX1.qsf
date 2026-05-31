@@ -115,3 +115,4 @@ set_global_assignment -name QIP_FILE sys/pll_cfg.qip
 set_global_assignment -name QIP_FILE sys/pll_hdmi.qip
 set_global_assignment -name SOURCE_FILE db/MSX1.cmp.rdb
 set_global_assignment -name VHDL_FILE rtl/ram_init.vhd
+set_global_assignment -name VHDL_FILE rtl/bram_altera.vhd
