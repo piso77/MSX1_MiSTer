@@ -34,21 +34,20 @@ architecture synthesis of ram_init is
       variable ramfileline : line;
       variable ram_data    : t_ram := (others => (others => '0'));
       variable bitvec      : bit_vector(G_DATA_WIDTH - 1 downto 0);
-		variable bitvec_slv : std_logic_vector(G_DATA_WIDTH - 1 downto 0);
+      variable bitvec_slv  : std_logic_vector(G_DATA_WIDTH - 1 downto 0);
       variable i           : natural := 0;
    begin
       if G_ROM_PRELOAD = 1 then
-         file_open(ramfile, ramfilename);
-         while not endfile(ramfile) loop
+         file_open(ramfile, ramfilename, read_mode);
+         for i in t_ram'range loop
+            exit when endfile(ramfile);
             readline(ramfile, ramfileline);
             if G_ROM_FILE_HEX then
                hread(ramfileline, bitvec_slv);
-					bitvec := to_bitvector(bitvec_slv);
             else
-               read(ramfileline, bitvec);
+               read(ramfileline, bitvec_slv);
             end if;
-            ram_data(i) := to_stdlogicvector(bitvec);
-            i := i + 1;
+            ram_data(i) := bitvec_slv;
          end loop;
          file_close(ramfile);
       end if;
