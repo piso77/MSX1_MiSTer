@@ -133,7 +133,7 @@ ls74 u1_2
 //  -- ROM
 //  -----------------------------------------------------------------------------
 wire [7:0] rom_q;
-spram #(.addr_width(15), .mem_init_file("rtl/rom/8020-00bios.mif"), .mem_preload(1), .mem_name("ROM")) rom
+spram_bios_pkg #(.addr_width(15)) rom
 (   
 	.clock(clk),
 	.address(ioctl_isBIOS ? ioctl_addr[14:0] : a[14:0]),
