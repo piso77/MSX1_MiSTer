@@ -10,7 +10,7 @@ ENTITY spram IS
 		addr_width    : integer := 8;
 		data_width    : integer := 8;
 		mem_init_file : string := " ";
-		mem_preload   : integer := 0;
+		mem_preload   : boolean := false;
 		mem_name      : string := "MEM" -- for InSystem Memory content editor.
 	);
 	PORT
