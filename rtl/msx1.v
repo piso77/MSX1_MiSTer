@@ -159,6 +159,8 @@ spram_bios_pkg #(.addr_width(15)) rom
 (   
 	.clock(clk),
 	.address(ioctl_isBIOS ? ioctl_addr[14:0] : a[14:0]),
+	.cs(1),
+	.enable(1),
 	.q(rom_q),
 	.wren(ioctl_isBIOS),
 	.data(ioctl_dout)
