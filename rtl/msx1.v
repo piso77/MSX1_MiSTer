@@ -106,6 +106,28 @@ t80pa #(.Mode(0)) T80
 	.DO(d_from_cpu)
 );
 
+ila_1_wrapper ila1
+(
+    .clk(clk),
+    .red(R),
+    .green(G),
+    .blue(B),
+    .hs(hsync_n),
+    .vs(vsync_n),
+    .hblank(hblank),
+    .vblank(vblank),
+		.reset(reset),
+		.ce_10m7(ce_10m7),
+		.addr(a),
+		.dtocpu(d_to_cpu),
+		.dfromcpu(d_from_cpu),
+		.cs1(CS1_n),
+		.cs01(CS01_n),
+		.cs12(CS12_n),
+		.cs2(CS2_n),
+		.sltsl(SLTSL_n)
+);
+
 //  -----------------------------------------------------------------------------
 //  -- WAIT
 //  -----------------------------------------------------------------------------
