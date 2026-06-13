@@ -117,6 +117,8 @@ spram_vy0010_pkg #(.addr_width(14)) vy0010_rom
 (
    .clock(clk),
    .address(addr[13:0]),
+	 .cs(1),
+	 .enable(1),
    .wren(0),
    .q(d_from_rom)
 );
