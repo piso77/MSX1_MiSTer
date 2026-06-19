@@ -109,23 +109,21 @@ t80pa #(.Mode(0)) T80
 ila_1_wrapper ila1
 (
     .clk(clk),
-    .red(R),
-    .green(G),
-    .blue(B),
-    .hs(hsync_n),
-    .vs(vsync_n),
-    .hblank(hblank),
-    .vblank(vblank),
 		.reset(reset),
 		.ce_10m7(ce_10m7),
+		.clk_en_3m58_p(clk_en_3m58_p),
+		.clk_en_3m58_n(clk_en_3m58_n),
+		.wait_n(wait_n),
+		.vdp_int_n(vdp_int_n),
+		.m1_n(m1_n),
+		.mreq_n(mreq_n),
+		.iorq_n(iorq_n),
+		.rd_n(rd_n),
+		.wr_n(wr_n),
+		.rfrsh_n(rfrsh_n),
 		.addr(a),
 		.dtocpu(d_to_cpu),
-		.dfromcpu(d_from_cpu),
-		.cs1(CS1_n),
-		.cs01(CS01_n),
-		.cs12(CS12_n),
-		.cs2(CS2_n),
-		.sltsl(SLTSL_n)
+		.dfromcpu(d_from_cpu)
 );
 
 //  -----------------------------------------------------------------------------
