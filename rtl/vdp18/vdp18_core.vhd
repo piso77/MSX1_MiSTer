@@ -246,6 +246,28 @@ begin
       irq_o         => irq_s
     );
 
+--vdp_ila : entity work.vdp_ila_wrapper
+--  port map (
+--    clk => clk_i,
+--    blank_i => (0 => to_std_logic_f(blank_s)),
+--    hor_active_i => (0 => to_std_logic_f(hor_active_s)),
+--    vert_active_i => (0 => to_std_logic_f(vert_active_s)),
+--    reg_col0_i => reg_col0_s,
+--    pat_col_i => pat_col_s,
+--    spr0_col_i => spr0_col_s,
+--    spr1_col_i => spr1_col_s,
+--    spr2_col_i => spr2_col_s,
+--    spr3_col_i => spr3_col_s,
+--    col_o => col_o,
+--    csr_n_i => (0 => csr_n_i),
+--    csw_n_i => (0 => csw_n_i),
+--    mode_i => (0 => mode_i),
+--    cd_i => cd_i,
+--    int_n_o => (0 => int_n_o),
+--    cd_o => cd_o,
+--    clk_en_10m7_i => (0 => clk_en_10m7_i),
+--    reset_n_i => (0 => reset_n_i)
+--);
 
   -----------------------------------------------------------------------------
   -- CPU I/O Module
