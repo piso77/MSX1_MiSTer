@@ -146,6 +146,21 @@ architecture rtl of vdp18_cpuio is
 
 begin
 
+--ila_cpuio : entity work.ila_vdp_cpuio_wrapper
+--  port map (
+--    clk => clk_i,
+--    clk_en_10m7 => (0 => to_std_logic_f(clk_en_10m7_i)),
+--    probe0 => ctrl_reg_q(0),
+--    probe1 => ctrl_reg_q(1),
+--    probe2 => ctrl_reg_q(2),
+--    probe3 => ctrl_reg_q(3),
+--    probe4 => ctrl_reg_q(4),
+--    probe5 => ctrl_reg_q(5),
+--    probe6 => ctrl_reg_q(6),
+--    probe7 => ctrl_reg_q(7),
+--    write_reg => (0 => to_std_logic_f(write_reg_s))
+--  );
+
   -----------------------------------------------------------------------------
   -- Process seq
   --
