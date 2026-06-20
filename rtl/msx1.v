@@ -173,6 +173,15 @@ spram_bios_pkg #(.addr_width(15)) rom
 	.data(ioctl_dout)
 );
 
+//gen_rom #(.ADDR_WIDTH(15), .INIT_FILE("../../CORE/MSX1_MiSTer/rtl/rom/8020-00bios.mif.mem")) rom
+//(
+//.rdclock(clk),
+//.wrclock(clk),
+//.rdaddress(ioctl_isBIOS ? ioctl_addr[14:0] : a[14:0]),
+//.q(rom_q),
+//.cs(1)
+//);
+
 wire [7:0] fw_rom_q;
 spram #(.addr_width(14), .mem_name("FWROM")) fw_rom
 (   
