@@ -123,7 +123,16 @@ ila_1_wrapper ila1
 		.rfrsh_n(rfrsh_n),
 		.addr(a),
 		.dtocpu(d_to_cpu),
-		.dfromcpu(d_from_cpu)
+		.dfromcpu(d_from_cpu),
+		.vdp_n(vdp_n),
+		.psg_n(psg_n),
+		.ppi_n(ppi_n),
+		.CS1_n(CS1_n),
+		.CS01_n(CS01_n),
+		.CS12_n(CS12_n),
+		.CS2_n(CS2_n),
+		.SLTSL_n(SLTSL_n),
+		.ppi_out_a(ppi_out_a)
 );
 
 //  -----------------------------------------------------------------------------
