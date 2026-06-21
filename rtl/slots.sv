@@ -84,9 +84,10 @@ assign ram_ready_B  = sdram_size == 0 ? 1'b1 : sdram_ready;
                                  
 //MapperInfo
 reg    last_loadRom;
-always @(posedge ioctl_isROMA, posedge ioctl_isROMB) begin
-   if (ioctl_isROMA) last_loadRom <= 0;
-   if (ioctl_isROMB) last_loadRom <= 1;
+always @(posedge clk, posedge reset) begin
+   if (reset) last_loadRom <= 0;
+   else if (ioctl_isROMA) last_loadRom <= 0;
+   else if (ioctl_isROMB) last_loadRom <= 1;
 end
 
 assign mapper_info = last_loadRom ?  rom_enabled[1] ? detected_mapper_B : 3'h0 :
