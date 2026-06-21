@@ -43,7 +43,7 @@ assign d_to_cpu = romce            ? d_from_rom                             :
                                      8'hFF;
 
 wire wr7ffc = r7ffc & ~wr_n;
-always @(posedge reset, posedge wr7ffc) begin
+always @(posedge clk, posedge reset) begin
    if (reset) begin
       side_select <= 1'b0;
    end else begin
@@ -54,7 +54,7 @@ always @(posedge reset, posedge wr7ffc) begin
 end
 
 wire wr7ffd = r7ffd & ~wr_n;
-always @(posedge reset, posedge wr7ffd) begin
+always @(posedge clk, posedge reset) begin
    if (reset) begin
       m_on        <= 1'b0;
       in_use      <= 1'b0;
