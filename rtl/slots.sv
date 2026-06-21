@@ -214,6 +214,8 @@ spram #(.addr_width(16), .mem_name("RAM")) ram
 (   
 	.clock(clk),
 	.address (addr[15:0]),
+	.cs(1),
+	.enable(1),
 	.q(ram_q),
 	.data(d_from_cpu),
 	.wren(~(SLTSL_n[3] | wr_n ))
@@ -228,6 +230,8 @@ spram #(.addr_width(18),.mem_name("SLOTROM")) rom_cart
 (
     .clock(clk),
     .address(bram_addr),
+	.cs(1),
+	.enable(1),
     .wren(bram_we & bram_addr < 24'h20000),
     .q(bram_dout),
     .data(bram_din)
