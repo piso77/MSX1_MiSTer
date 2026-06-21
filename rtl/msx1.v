@@ -187,6 +187,8 @@ spram #(.addr_width(14), .mem_name("FWROM")) fw_rom
 (   
 	.clock(clk),
 	.address(ioctl_isFWBIOS ? ioctl_addr[13:0] : a[13:0]),
+	.cs(1),
+	.enable(1),
 	.q(fw_rom_q),
 	.wren(ioctl_isFWBIOS),
 	.data(ioctl_dout)
@@ -203,6 +205,8 @@ spram #(.addr_width(14),.mem_name("VRAM")) vram
 (
 	.clock(clk),
 	.address(vram_a),
+	.cs(1),
+	.enable(1),
 	.wren(vram_we),
 	.data(vram_do),
 	.q(vram_di)
