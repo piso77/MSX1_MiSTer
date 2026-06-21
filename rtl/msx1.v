@@ -265,6 +265,7 @@ wire CS1_n, CS01_n, CS12_n, CS2_n;
 wire [3:0] SLTSL_n;
 memory_mapper memory_mapper
 (
+  .clk(clk),
 	.reset(reset),
 	.addr(a),
 	.ppi_n(ppi_n),

@@ -1,5 +1,6 @@
 module memory_mapper
 (
+  input        clk,
 	input        reset,
 	input        ppi_n,
 	input [15:0] addr,
@@ -17,11 +18,11 @@ module memory_mapper
 wire ppi_en = ~ppi_n;
 reg enable;
 initial enable = 0;
-always @(posedge reset, posedge ppi_en) begin
+always @(posedge clk, posedge reset) begin
 	if (reset)
-		enable = 0;
+		enable = 1'b0;
 	else if (ppi_en)
-		enable = 1;
+		enable = 1'b1;
 end
 
 wire selmem = ~mreq_n & rfrsh_n; 
