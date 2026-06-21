@@ -56,6 +56,8 @@ spram #(.addr_width(13),.mem_name("CART_SRAM")) cart_sram
 (
     .clock(clk),
     .address(sram_addr),
+		.cs(1),
+		.enable(1),
     .wren(sram_we),
     .q(d_to_cpu_sram),
     .data(d_from_cpu)
