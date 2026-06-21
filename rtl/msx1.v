@@ -115,7 +115,8 @@ ls74 u1_1
 (
    .clr(exwait_n),
    .pre(u1_2_q),
-   .clk(clk_en_3m58_p),
+   .clk(clk),
+   .cen(clk_en_3m58_p),
    .d(m1_n),
    .q(wait_n)
 );
@@ -125,7 +126,8 @@ ls74 u1_2
 (
    .clr(1),
    .pre(exwait_n),
-   .clk(clk_en_3m58_p),
+   .clk(clk),
+   .cen(clk_en_3m58_p),
    .d(wait_n),
    .q(u1_2_q)
 );
@@ -319,7 +321,8 @@ ls74 u21_1
 (
    .clr(!psg_n),
    .pre(1),
-   .clk(clk_en_3m58_p),
+   .clk(clk),
+   .cen(clk_en_3m58_p),
    .d(!psg_n),
    .q(u21_1_q)
 );
@@ -329,7 +332,8 @@ ls74 u21_2
 (
    .clr(!psg_n),
    .pre(1),
-   .clk(clk_en_3m58_p),
+   .clk(clk),
+   .cen(clk_en_3m58_p),
    .d(u21_1_q),
    .q(u21_2_q)
 );
