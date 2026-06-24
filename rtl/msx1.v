@@ -13,7 +13,8 @@ module msx1
 	output        vblank,
 	input         vdp_pal,
 	output [15:0] audio,
-	input  [10:0] ps2_key,
+	input  [6:0] kb_scancode,
+	input        kb_release,
 	input   [5:0] joy0,
 	input   [5:0] joy1,
 	input         ioctl_download,
@@ -301,7 +302,8 @@ keyboard msx_key
 (
 	.reset_n_i(~reset),
 	.clk_i(clk),
-	.ps2_code_i(ps2_key),
+	.kb_scancode({1'b0, kb_scancode}),
+	.kb_release(kb_release),
 	.kb_addr_i(ppi_out_c[3:0]),
 	.kb_data_o(d_from_kb)
 );
