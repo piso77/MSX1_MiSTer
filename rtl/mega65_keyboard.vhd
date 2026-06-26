@@ -68,8 +68,8 @@ begin
 						when 49 => keyMatrix(1)(6) <= kb_release; -- ] -- * on mega65
 						when 50 => keyMatrix(1)(7) <= kb_release; -- ;
 						-- 2
-						--when x"52" => keyMatrix(2)(0) <= kb_release; -- '
-						--when x"0e" => keyMatrix(2)(1) <= kb_release; -- `
+						when 54 => keyMatrix(2)(0) <= kb_release; -- '
+						when 57 => keyMatrix(2)(1) <= kb_release; -- ` -- <- on mega65
 						when 47 => keyMatrix(2)(2) <= kb_release; -- ,
 						when 44 => keyMatrix(2)(3) <= kb_release; -- .
 						when 55 => keyMatrix(2)(4) <= kb_release; -- /
