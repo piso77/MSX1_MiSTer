@@ -297,12 +297,13 @@ assign d_to_cpu = ~(CS01_n | SLTSL_n[0]) ? rom_q :
 //  -----------------------------------------------------------------------------
 //  -- Keyboard decoder
 //  -----------------------------------------------------------------------------
+
 wire [7:0] d_from_kb;
 keyboard msx_key
 (
 	.reset_n_i(~reset),
 	.clk_i(clk),
-	.kb_scancode({1'b0, kb_scancode}),
+	.kb_scancode(kb_scancode),
 	.kb_release(kb_release),
 	.kb_addr_i(ppi_out_c[3:0]),
 	.kb_data_o(d_from_kb)
