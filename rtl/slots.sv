@@ -64,20 +64,17 @@ assign sdram_addr    = ioctl_isROMA ? {3'b001,ram_addr_A[21:0]} :
                        ~SLTSL_n[1]  ? enableFDD_n ? {3'b001,ram_addr_A[21:0]} : 'd0 :
                        ~SLTSL_n[2]  ? {3'b000,ram_addr_B[21:0]} :                                  
                                       'd0;
-assign bram_addr     = ram_addr_B;                       
 assign sdram_din     = ioctl_dout;
-assign bram_din      = ioctl_dout;
 assign sdram_we      = ioctl_isROMA  ? ram_we_A :
                        ioctl_isROMB  ? ram_we_B :
                                        0;
 
-assign bram_we       = sdram_size == 0 & ioctl_isROMB & ioctl_wr;
 assign sdram_rd      = ~SLTSL_n[1] ?  enableFDD_n ? ram_rd_A : 0 :
                        ~SLTSL_n[2] ?  ram_rd_B :
                                       0;                                      
 
 assign ram_dout_A   = sdram_size == 0 ? 8'hFF     : sdram_dout;
-assign ram_dout_B   = sdram_size == 0 ? bram_dout : sdram_dout;
+assign ram_dout_B   = sdram_size == 0 ? 8'hFF  : sdram_dout;
 
 assign ram_ready_A  = sdram_size == 0 ? 1'b1 : sdram_ready;
 assign ram_ready_B  = sdram_size == 0 ? 1'b1 : sdram_ready;
@@ -220,22 +217,6 @@ spram #(.addr_width(16), .mem_name("RAM")) ram
 	.q(ram_q),
 	.data(d_from_cpu),
 	.wren(~(SLTSL_n[3] | wr_n ))
-);
-
-//BRAM
-wire [7:0] bram_dout;
-wire [7:0] bram_din;
-wire [24:0] bram_addr;
-wire bram_we;
-spram #(.addr_width(18),.mem_name("SLOTROM")) rom_cart
-(
-    .clock(clk),
-    .address(bram_addr),
-	.cs(1),
-	.enable(1),
-    .wren(bram_we & bram_addr < 24'h20000),
-    .q(bram_dout),
-    .data(bram_din)
 );
 
 endmodule
