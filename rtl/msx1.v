@@ -40,7 +40,6 @@ module msx1
 	output        sdram_we,
 	output        sdram_rd,
 	input         sdram_ready,
-	input   [1:0] sdram_size, 
    
 	input         img_mounted,
 	input  [31:0] img_size,
@@ -397,7 +396,6 @@ slots slots
 	.sdram_we(sdram_we),
 	.sdram_rd(sdram_rd),
 	.sdram_ready(sdram_ready),
-	.sdram_size(sdram_size),
 	.slot_A(slot_A),
 	.slot_B(slot_B),
 	.mapper_info(mapper_info),

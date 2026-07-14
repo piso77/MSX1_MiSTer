@@ -28,7 +28,6 @@ module slots
     output           sdram_we,
     output           sdram_rd,
     input            sdram_ready,
-    input      [1:0] sdram_size,
     //image
     input            img_mounted,
     input     [31:0] img_size,
@@ -73,11 +72,11 @@ assign sdram_rd      = ~SLTSL_n[1] ?  enableFDD_n ? ram_rd_A : 0 :
                        ~SLTSL_n[2] ?  ram_rd_B :
                                       0;                                      
 
-assign ram_dout_A   = sdram_size == 0 ? 8'hFF     : sdram_dout;
-assign ram_dout_B   = sdram_size == 0 ? 8'hFF  : sdram_dout;
+assign ram_dout_A   = sdram_dout;
+assign ram_dout_B   = sdram_dout;
 
-assign ram_ready_A  = sdram_size == 0 ? 1'b1 : sdram_ready;
-assign ram_ready_B  = sdram_size == 0 ? 1'b1 : sdram_ready;
+assign ram_ready_A  = sdram_ready;
+assign ram_ready_B  = sdram_ready;
                                  
 //MapperInfo
 reg    last_loadRom;
@@ -91,7 +90,7 @@ assign mapper_info = last_loadRom ?  rom_enabled[1] ? detected_mapper_B : 3'h0 :
                                      rom_enabled[0] ? detected_mapper_A : 3'h0 ;
                                   
 //SLOT A
-wire enableFDD_n = SLTSL_n[1] | ~((|sdram_size &  slot_A == 9) | (sdram_size == 0 & slot_A == 1));
+wire enableFDD_n = SLTSL_n[1] | ~(slot_A == 9);
 wire enableROM_n = SLTSL_n[1] | ~enableFDD_n;
 
 wire [7:0]  d_from_slot_A;
