@@ -72,12 +72,6 @@ assign sdram_rd      = ~SLTSL_n[1] ?  enableFDD_n ? ram_rd_A : 0 :
                        ~SLTSL_n[2] ?  ram_rd_B :
                                       0;                                      
 
-assign ram_dout_A   = sdram_dout;
-assign ram_dout_B   = sdram_dout;
-
-assign ram_ready_A  = sdram_ready;
-assign ram_ready_B  = sdram_ready;
-                                 
 //MapperInfo
 reg    last_loadRom;
 always @(posedge clk, posedge reset) begin
@@ -97,12 +91,10 @@ wire [7:0]  d_from_slot_A;
 wire [14:0] sound_slot_A;
 wire        ioctl_wait_slot_A;
 
-wire [7:0]  ram_dout_A;
 wire [7:0]  ram_din_A;
 wire [24:0] ram_addr_A;
 wire        ram_we_A;
 wire        ram_rd_A;
-wire        ram_ready_A;
 wire  [2:0] detected_mapper_A;
 cart_rom ROM_slot_A
 (
@@ -124,12 +116,12 @@ cart_rom ROM_slot_A
 	.ioctl_dout(ioctl_dout),
 	.ioctl_isROM(ioctl_isROMA),
 	.ioctl_wait(ioctl_wait_slot_A),
-   .ram_dout(ram_dout_A),
+   .ram_dout(sdram_dout),
    .ram_din(ram_din_A),
    .ram_addr(ram_addr_A),
    .ram_we(ram_we_A),
    .ram_rd(ram_rd_A),
-   .ram_ready(ram_ready_A),
+   .ram_ready(sdram_ready),
    .user_mapper(slot_A),
    .detected_mapper(detected_mapper_A),
    .rom_enabled(rom_enabled[0])
@@ -167,12 +159,10 @@ wire [7:0]  d_from_slot_B;
 wire [14:0] sound_slot_B;
 wire ioctl_wait_slot_B;
 
-wire [7:0]  ram_dout_B;
 wire [7:0]  ram_din_B;
 wire [24:0] ram_addr_B;
 wire        ram_we_B;
 wire        ram_rd_B;
-wire        ram_ready_B;
 wire  [2:0] detected_mapper_B;
 cart_rom ROM_slot_B
 (
@@ -194,12 +184,12 @@ cart_rom ROM_slot_B
 	.ioctl_dout(ioctl_dout),
 	.ioctl_isROM(ioctl_isROMB),
 	.ioctl_wait(ioctl_wait_slot_B),
-   .ram_dout(ram_dout_B),
+   .ram_dout(sdram_dout),
    .ram_din(ram_din_B),
    .ram_addr(ram_addr_B),
    .ram_we(ram_we_B),
    .ram_rd(ram_rd_B),
-   .ram_ready(ram_ready_B),
+   .ram_ready(sdram_ready),
 	.user_mapper(slot_B),
    .detected_mapper(detected_mapper_B),
    .rom_enabled(rom_enabled[1])
