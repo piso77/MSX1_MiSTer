@@ -414,7 +414,6 @@ msx1 MSX1
 	.sdram_we(),
 	.sdram_rd(),
 	.sdram_ready('0),
-	.sdram_size('0),
 );
 
 /////////////////  SDRAM  /////////////////////////
