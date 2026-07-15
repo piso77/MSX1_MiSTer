@@ -91,7 +91,6 @@ wire [7:0]  d_from_slot_A;
 wire [14:0] sound_slot_A;
 wire        ioctl_wait_slot_A;
 
-wire [7:0]  ram_din_A;
 wire [24:0] ram_addr_A;
 wire        ram_we_A;
 wire        ram_rd_A;
@@ -117,7 +116,6 @@ cart_rom ROM_slot_A
 	.ioctl_isROM(ioctl_isROMA),
 	.ioctl_wait(ioctl_wait_slot_A),
    .ram_dout(sdram_dout),
-   .ram_din(ram_din_A),
    .ram_addr(ram_addr_A),
    .ram_we(ram_we_A),
    .ram_rd(ram_rd_A),
@@ -159,7 +157,6 @@ wire [7:0]  d_from_slot_B;
 wire [14:0] sound_slot_B;
 wire ioctl_wait_slot_B;
 
-wire [7:0]  ram_din_B;
 wire [24:0] ram_addr_B;
 wire        ram_we_B;
 wire        ram_rd_B;
@@ -185,7 +182,6 @@ cart_rom ROM_slot_B
 	.ioctl_isROM(ioctl_isROMB),
 	.ioctl_wait(ioctl_wait_slot_B),
    .ram_dout(sdram_dout),
-   .ram_din(ram_din_B),
    .ram_addr(ram_addr_B),
    .ram_we(ram_we_B),
    .ram_rd(ram_rd_B),
